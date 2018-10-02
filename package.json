@@ -1,0 +1,11 @@
+{
+  "name": "CloudWatch-PutMetricData-HighVolume",
+  "version": "1.0.0",
+  "description": "Code samples related to Amazon CloudWatch launches bulk put blog post published on the [AWS DevOps blog](https://aws.amazon.com/blogs/devops//). This sample demonstrates how to better use CloudWatch PutMetricData to send data efficiently into CloudWatch.",
+  "main": "putMetricData.js",
+  "author": "Andrea Giuliano",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.289.0"
+  }
+}

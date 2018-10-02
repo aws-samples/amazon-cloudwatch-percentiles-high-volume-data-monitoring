@@ -1,7 +1,104 @@
 ## Use CloudWatch percentiles for high volume data ingestion and monitoring
 
-Use CloudWatch percentiles for high volume data ingestion and monitoring, showing the difference between the old way of publishing metrics and the new values and counts feature.
+Code samples related to "Amazon CloudWatch launches bulk put” blog post published on the [AWS DevOps blog](https://aws.amazon.com/blogs/devops//). This sample demonstrates how to better use CloudWatch PutMetricData to send data efficiently into CloudWatch.
 
 ## License Summary
 
 This sample code is made available under a modified MIT license. See the LICENSE file.
+
+## Setup Instructions
+
+This project includes code that is intended to run as an AWS Lambda function. Full instructions can be found in the associated blog post on the AWS DevOps blog.
+
+## Prerequisites
+
+1. Download the repository.
+2. Run 'npm install' to create dependencies.
+3. ZIP the entire project `zip -r putmetricdatademo.zip ./*`
+
+### Create IAM execution role
+1. Sign in to the AWS Management Console and open the IAM console at https://console.aws.amazon.com/iam/.
+2. Click on Role and then on Create role
+3. In Role Name, use a name that is unique within your AWS account (for example, lambda-kinesis-cloudwatch-role).
+4. In Select Role Type, choose AWS Service Roles, and then choose AWS Lambda. This grants the AWS Lambda service permissions to assume the role.
+5. In Attach Policy, choose AWSLambdaKinesisExecutionRole and CloudWatchFullAccess
+6. Take note of the Role arn
+
+### Create the Lambda functions
+
+1. Create a Lambda function that will perform PutMetricData with a single value
+```
+aws lambda create-function \
+--region region \
+--function-name PutMetricDataSingleValue  \
+--zip-file fileb://putmetricdatademo.zip \
+--role execution-role-arn  \
+--handler cloudwatch.putMetricDataSingleValue \
+--timeout 60 \
+--runtime nodejs8.10
+```
+
+2. Create a Lambda function that will perform PutMetricData with values and counts
+```
+aws lambda create-function \
+--region region \
+--function-name PutMetricDataValuesAndCounts  \
+--zip-file fileb://putmetricdatademo.zip \
+--role execution-role-arn  \
+--handler cloudwatch.putMetricDataValuesAndCounts \
+--timeout 60 \
+--runtime nodejs8.10
+```
+
+### Create Kinesis stream
+1. Create a Kinesis stream where you will publish data into.
+```
+aws kinesis create-stream \
+--stream-name putmetricdatastream \
+--shard-count 1 \
+--region region
+```
+2. Describe the Kinesis stream you just created
+```
+aws kinesis describe-stream \
+--stream-name putmetricdatastream \
+--region region
+```
+3. Using the output from the previous command, set the previous created Lambda to consume from the stream
+```
+aws lambda create-event-source-mapping \
+--region region \
+--function-name PutMetricDataSingleValue \
+--event-source  kinesis-stream-arn \
+--batch-size 150 \
+--starting-position TRIM_HORIZON
+```
+
+```
+aws lambda create-event-source-mapping \
+--region region \
+--function-name PutMetricDataValuesAndCounts \
+--event-source  kinesis-stream-arn \
+--batch-size 150 \
+--starting-position TRIM_HORIZON
+```
+
+### Setup a Cognito user to send data to kinesis
+1. Following the [Amazon Kinesis Data Generator](https://awslabs.github.io/amazon-kinesis-data-generator/web/help.html) instructions, click on `Create a Cognito User With CloudFormation`
+
+2. Go to [Amazon Kinesis Data Generator](https://awslabs.github.io/amazon-kinesis-data-generator) click on Configure and enter the required data created before. Use then your username and password and click `Sign in`.
+
+3. Select the region and the Kinesis Stream created before. In the record template write
+
+```
+{{random.number(1000)}}
+```
+and click `Send data`
+
+4. The lambda created will start to receive the data and publish metrics.
+
+### Troubleshooting
+
+1. View the Lambda log file in CloudWatch.
+
+See the CloudWatch API documentation for [PutMetricData](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html) for more information.
