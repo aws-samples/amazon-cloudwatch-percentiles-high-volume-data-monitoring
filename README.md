@@ -35,6 +35,7 @@ aws lambda create-function \
 --role execution-role-arn  \
 --handler cloudwatch.putMetricDataSingleValue \
 --timeout 60 \
+--memory-size 1024 \
 --runtime nodejs8.10
 ```
 
@@ -47,6 +48,7 @@ aws lambda create-function \
 --role execution-role-arn  \
 --handler cloudwatch.putMetricDataValuesAndCounts \
 --timeout 60 \
+--memory-size 1024 \
 --runtime nodejs8.10
 ```
 

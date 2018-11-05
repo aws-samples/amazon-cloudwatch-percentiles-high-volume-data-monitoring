@@ -63,6 +63,5 @@ exports.putMetricDataSingleValue = (event, context) => {
         })
 
         putMetricData(metric)
-        putMetricData(generateCallCountingMetric('PutMetricDataSingleValueCalls'))
     });
 };
