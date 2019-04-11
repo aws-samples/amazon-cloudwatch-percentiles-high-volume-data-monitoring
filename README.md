@@ -4,6 +4,8 @@ Client-side metric aggregations are available by publishing arrays of values and
 
 This example uses the [Kinesis Data Generator](https://awslabs.github.io/amazon-kinesis-data-generator/web/help.html) to generate mock data that is read by a Lambda function. The example Lambda function publishes data to Amazon CloudWatch using the client-side aggregation feature of the PutMetricData API. 
 
+The [Amazon CloudWatch agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) automatically uses client-side aggregations. 
+
 ## License Summary
 
 This sample code is made available under a modified MIT license. See the LICENSE file.
