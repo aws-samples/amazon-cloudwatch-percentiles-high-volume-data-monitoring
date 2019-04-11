@@ -1,6 +1,6 @@
 ## Example - Using Amazon CloudWatch client-side metric aggregations 
 
-Client-side metric aggregations are available by publishing arrays of values and counts through the Amazon CloudWatch [PutMetricData API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html) service. The Amazon [CloudWatch agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) automatically aggregates data client-side to maximize efficiency. With client-side aggregations you can send more data at lower cost, reducing the number of PutMetricData API calls. This results in lower resource utilization on your hosts.
+Client-side metric aggregations are available by publishing arrays of values and counts through the Amazon CloudWatch [PutMetricData API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html) service. With client-side aggregations you can send more data at lower cost, reducing the number of PutMetricData API calls. This results in lower resource utilization on your hosts.
 
 This example uses the [Kinesis Data Generator](https://awslabs.github.io/amazon-kinesis-data-generator/web/help.html) to generate mock data that is read by a Lambda function. The example Lambda function publishes data to Amazon CloudWatch using the client-side aggregation feature of the PutMetricData API. 
 
