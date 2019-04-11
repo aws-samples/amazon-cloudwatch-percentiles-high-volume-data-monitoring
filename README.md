@@ -1,8 +1,6 @@
 ## Use CloudWatch client-side metric aggregations for high volume data ingestion and monitoring
 
-Code samples related to ["Use Amazon CloudWatch to Monitor High Volume Systems"](https://aws.amazon.com/blogs/devops/) blog post published on the AWS DevOps blog. The post demonstrates how to build more efficient data ingestion using CloudWatch client-side metric aggegations to minimize the calls to CloudWatch PutMetricData. 
-
-Metric aggregations are available by publishing arrays of values and counts through the CloudWatch [PutMetricData API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html). The [CloudWatch agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-first-instance.html) automatically aggregates data client-side to maximize efficiency. 
+ Metric aggregations are available by publishing arrays of values and counts through the CloudWatch [PutMetricData API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html). The [CloudWatch agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-first-instance.html) automatically aggregates data client-side to maximize efficiency. 
 
 ## License Summary
 
