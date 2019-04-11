@@ -1,6 +1,8 @@
 ## Use CloudWatch client-side metric aggregations for high volume data ingestion and monitoring
 
- Metric aggregations are available by publishing arrays of values and counts through the CloudWatch [PutMetricData API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html). The [CloudWatch agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-first-instance.html) automatically aggregates data client-side to maximize efficiency. 
+ Metric aggregations are available by publishing arrays of values and counts through the CloudWatch [PutMetricData API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html) service. The [CloudWatch agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Agent-on-first-instance.html) automatically aggregates data client-side to maximize efficiency. 
+ 
+Previously, the Amazon CloudWatch PutMetricData API service only supported publishing a single data point per metric per API call. Now, you can use the client-side aggregations feature to publish arrays of values and counts (or histograms) to PutMetricData. With client-side aggregations you can send more data at lower cost, reducing the number of PutMetricData API calls. This results in lower resource utilization on your hosts.
 
 ## License Summary
 
