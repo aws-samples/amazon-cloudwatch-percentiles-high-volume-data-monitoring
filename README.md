@@ -4,6 +4,8 @@ Client-side metric aggregations are available by publishing arrays of values and
  
 Previously, the Amazon CloudWatch PutMetricData API service only supported publishing a single data point per metric per API call. Now, you can use the client-side aggregations feature to publish arrays of values and counts (or histograms) to PutMetricData. With client-side aggregations you can send more data at lower cost, reducing the number of PutMetricData API calls. This results in lower resource utilization on your hosts.
 
+This example uses the [Kinesis Data Generator](https://awslabs.github.io/amazon-kinesis-data-generator/web/help.html) to generate mock data that is read by a Lambda function. The example Lambda function publishes data to Amazon CloudWatch using the client-side aggregation feature of the PutMetricData API. 
+
 ## License Summary
 
 This sample code is made available under a modified MIT license. See the LICENSE file.
