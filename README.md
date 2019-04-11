@@ -1,4 +1,4 @@
-## Use Amazon CloudWatch client-side metric aggregations 
+## Example - Using Amazon CloudWatch client-side metric aggregations 
 
 Client-side metric aggregations are available by publishing arrays of values and counts through the Amazon CloudWatch [PutMetricData API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricData.html) service. The Amazon [CloudWatch agent](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html) automatically aggregates data client-side to maximize efficiency. 
  
