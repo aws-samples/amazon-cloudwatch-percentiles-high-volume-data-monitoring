@@ -40,7 +40,7 @@ aws lambda create-function \
 --handler cloudwatch.putMetricDataSingleValue \
 --timeout 60 \
 --memory-size 1024 \
---runtime nodejs8.10
+--runtime nodejs10.x
 ```
 
 2. Create a Lambda function that will perform PutMetricData with values and counts.
@@ -53,7 +53,7 @@ aws lambda create-function \
 --handler cloudwatch.putMetricDataValuesAndCounts \
 --timeout 60 \
 --memory-size 1024 \
---runtime nodejs8.10
+--runtime nodejs10.x
 ```
 
 ### Create Kinesis stream
